@@ -26,7 +26,7 @@ export class CategoriasPage {
 
   ionViewDidLoad() {
     this.categoriaService.findAll()
-    .subscribe( response => { this.items = response } , error => {console.log(error);} ); // passa a função 'f' como argumento para a função 'subscribe'
+    .subscribe( response => { this.items = response } , error => {} ); // passa a função 'f' como argumento para a função 'subscribe'
   }
 
 }
