@@ -12,4 +12,12 @@ export class HomePage {
 
   }
 
+  /**
+   * nome da classe 'CategoriasPage'  definido no arquivo 'categorias.ts' 
+   */
+  login(){
+    //this.navCtrl.push('CategoriasPage');  // usado para empilhar , abre a segunda tela com um link para voltar para a anterior
+     this.navCtrl.setRoot('CategoriasPage'); 
+  }
+
 }
