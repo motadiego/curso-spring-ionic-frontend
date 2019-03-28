@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CategoriaService } from '../../services/domain/categoria.service';
+import { CategoriaDTO } from '../../models/categoria.dto';
+import { API_CONFIG } from '../../config/api.config';
 
-/**
- * Generated class for the CategoriasPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -15,6 +12,11 @@ import { CategoriaService } from '../../services/domain/categoria.service';
   templateUrl: 'categorias.html',
 })
 export class CategoriasPage {
+   
+  // array de categoriasDTO
+  items: CategoriaDTO[]; 
+
+  bucketUrl: string = API_CONFIG.bucketBaseUrl;
 
   constructor(
     public navCtrl: NavController, 
@@ -24,17 +26,7 @@ export class CategoriasPage {
 
   ionViewDidLoad() {
     this.categoriaService.findAll()
-    .subscribe(this.f , this.error); // passa a função 'f' como argumento para a função 'subscribe'
+    .subscribe( response => { this.items = response } , error => {console.log(error);} ); // passa a função 'f' como argumento para a função 'subscribe'
   }
 
-  /***
-   * função que recebe a responsa e exibe na tela (função callback)
-   */
-  f(response){
-    console.log(response);
-  }
-
-  error(error){
-    console.log(error);
-  }
 }
