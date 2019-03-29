@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { MenuController } from 'ionic-angular/components/app/menu-controller';
+import { CredenciaisDTO } from '../../models/credenciais.dto';
 
 @IonicPage()
 @Component({
@@ -8,6 +9,12 @@ import { MenuController } from 'ionic-angular/components/app/menu-controller';
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+
+  creds : CredenciaisDTO = {
+    email: "",
+    senha: ""
+  }  
 
   constructor(public navCtrl: NavController ,  public menu: MenuController) {
 
@@ -28,7 +35,8 @@ export class HomePage {
    */
   login(){
     //this.navCtrl.push('CategoriasPage');  // usado para empilhar , abre a segunda tela com um link para voltar para a anterior
-     this.navCtrl.setRoot('CategoriasPage'); 
+    console.log(this.creds);
+    this.navCtrl.setRoot('CategoriasPage'); 
   }
 
 }
