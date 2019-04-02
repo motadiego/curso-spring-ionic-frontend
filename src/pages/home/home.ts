@@ -40,7 +40,7 @@ export class HomePage {
     //this.navCtrl.push('CategoriasPage');  // usado para empilhar , abre a segunda tela com um link para voltar para a anterior
     this.auth.authenticate(this.creds)
             .subscribe(
-              response => {console.log(response.headers.get('Authorization')); this.navCtrl.setRoot('CategoriasPage');}
+              response => {this.auth.successfulLogin(response.headers.get('Authorization')); this.navCtrl.setRoot('CategoriasPage');}
              ,error => {}
             );
   }
