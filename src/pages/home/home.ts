@@ -23,7 +23,7 @@ export class HomePage {
       public auth: AuthService) {
   }
 
-  /** Quando for entrar na página , desabilita o menu */
+  /** é executado quando a página está prestes a entrar e se tornar a página ativa, desabilita o menu */
   ionViewWillEnter() {
     this.menu.swipeEnable(false);
   }
@@ -32,6 +32,18 @@ export class HomePage {
   ionViewDidLeave() {
     this.menu.swipeEnable(true);
   }
+
+  /** é executado quando a página entrou totalmente e agora é a página ativa. */
+  ionViewDidEnter(){
+    this.auth.refreshToken()
+    .subscribe(
+      response => {
+         this.auth.successfulLogin(response.headers.get('Authorization'));
+          this.navCtrl.setRoot('CategoriasPage');
+      }
+     ,error => {});
+  }
+
 
   /**
    * nome da classe 'CategoriasPage'  definido no arquivo 'categorias.ts' 
