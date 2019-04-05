@@ -29,7 +29,8 @@ export class CategoriasPage {
     .subscribe( response => { this.items = response } , error => {} ); 
   }
 
-  showProdutos(){
-    this.navCtrl.push('ProdutosPage');
+  showProdutos(idCategoria : string){
+    // idCategoria, nome do paramentro e nome do atributo do objeto passado como parametro para a pagina de produtos
+    this.navCtrl.push('ProdutosPage', { idCategoria : idCategoria } );
   }
 }
