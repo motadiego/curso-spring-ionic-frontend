@@ -5,6 +5,11 @@
 </ion-header>
 
 <ion-content padding>
+    <!-- botão flutuante do carrinho -->
+    <ion-fab  right edge>
+        <button navPush="CartPage" ion-fab mini class="carrinho-flutuante"><ion-icon name="cart"></ion-icon></button>
+    </ion-fab> 
+    
     <ion-list>
         <button ion-item *ngFor="let produto of items" (click)='showDetail(produto.id)'>
           <ion-thumbnail item-start>
