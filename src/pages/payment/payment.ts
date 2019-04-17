@@ -39,7 +39,7 @@ export class PaymentPage {
 
   nextPage(){
     this.pedido.pagamento = this.formGroup.value; // pega o valor de pagamento selecionado na pagina "payment.html" 
-    console.log(this.pedido);
+    this.navCtrl.setRoot('OrderConfirmationPage' ,  { pedido: this.pedido });
   }
 
 }
