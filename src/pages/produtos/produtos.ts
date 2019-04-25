@@ -22,24 +22,29 @@ export class ProdutosPage {
   }
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData(){
     // recupera o id da categoria passado como parametro no arquivo "categoria.ts"
     let idCategoria = this.navParams.get('idCategoria'); 
-    
+        
     // carrega o objeto de loading...
     let loading = this.presentLoading();
 
     this.produtoService.findByCategoria(idCategoria)
         .subscribe(response => {
-           this.items = response['content'];
-           // fecha a janela do loading ...
-           loading.dismiss();
-           this.loadImageUrls();
+          this.items = response['content'];
+          // fecha a janela do loading ...
+          loading.dismiss();
+          this.loadImageUrls();
         }, 
         error =>{
           // fecha a janela do loading ...
           loading.dismiss();
         });
   }
+
 
   loadImageUrls() {
     for (var i=0; i< this.items.length; i++) {
@@ -57,7 +62,8 @@ export class ProdutosPage {
     this.navCtrl.push('ProdutoDetailPage', { idProduto : idProduto } );
   }
 
-   presentLoading() {
+  /** Função que cria o feito de loading ... */
+  presentLoading() {
     const loading = this.loadingController.create({
       content: 'Aguarde...'
     });
@@ -66,5 +72,12 @@ export class ProdutosPage {
     return loading;
   }
 
+  /** Função que cria o efeito de refresh (carregar) mais dados em uma páigna */
+  doRefresh(refresher) {
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
+  }
 
 }

@@ -5,7 +5,13 @@
 </ion-header>
 
 <ion-content padding>
-    <!-- botão flutuante do carrinho -->
+ 
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  
+  <!-- botão flutuante do carrinho -->
     <ion-fab  right edge>
         <button navPush="CartPage" ion-fab mini class="carrinho-flutuante"><ion-icon name="cart"></ion-icon></button>
     </ion-fab> 
